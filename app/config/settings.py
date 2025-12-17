@@ -1,1 +1,16 @@
 #BillionairForever
+import os
+
+# ========== GOOGLE DRIVE ==========
+GOOGLE_FOLDER_ID = os.getenv("GOOGLE_FOLDER_ID")
+GOOGLE_CREDENTIALS_JSON = os.getenv("GOOGLE_CREDENTIALS_JSON")
+
+# ========== ONEDRIVE / MICROSOFT ==========
+ONEDRIVE_CLIENT_ID = os.getenv("ONEDRIVE_CLIENT_ID")
+ONEDRIVE_CLIENT_SECRET = os.getenv("ONEDRIVE_CLIENT_SECRET")
+ONEDRIVE_TENANT_ID = os.getenv("ONEDRIVE_TENANT_ID")
+ONEDRIVE_REFRESH_TOKEN = os.getenv("ONEDRIVE_REFRESH_TOKEN")
+
+# ========== PATHS TEMPORÁRIOS (RAILWAY) ==========
+TMP_INPUT = "/tmp/input"
+TMP_OUTPUT = "/tmp/output"
