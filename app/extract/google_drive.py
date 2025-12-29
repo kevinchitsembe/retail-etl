@@ -6,6 +6,7 @@ from googleapiclient.http import MediaIoBaseDownload
 import io
 
 def download_inputs():
+    os.makedirs("input_data", exist_ok=True)
     creds_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
     folder_id = os.getenv("GOOGLE_FOLDER_ID")
 
