@@ -25,16 +25,20 @@ def download_inputs():
     ).execute()
 
     files = results.get("files", [])
-    downloaded_files = []
+    downloaded_files = {}  # ← AGORA É UM DICIONÁRIO!
 
     for file in files:
+        file_name = file["name"]
+        file_path = os.path.join("input_data", file_name)  # ← CAMINHO COMPLETO
+        
         request = service.files().get_media(fileId=file["id"])
-        fh = io.FileIO(f"input_data/{file['name']}", "wb")
+        fh = io.FileIO(file_path, "wb")  # ← Usar o caminho completo
         downloader = MediaIoBaseDownload(fh, request)
         done = False
         while not done:
             status, done = downloader.next_chunk()
 
-        downloaded_files.append(file["name"])
+        # Adicionar ao dicionário: {nome_arquivo: caminho_completo}
+        downloaded_files[file_name] = file_path
 
-    return downloaded_files
+    return downloaded_files  # ← Retorna dicionário
