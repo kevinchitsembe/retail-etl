@@ -40,3 +40,25 @@ def upload_file(file_path, file_name):
         response = requests.put(upload_url, headers=headers, data=f)
 
     response.raise_for_status()
+
+
+def upload_outputs(files):
+    """
+    Recebe um dicionário ou lista de ficheiros gerados pelo ETL
+    e faz upload para o OneDrive.
+    """
+
+    # Se vier como dict {nome: path}
+    if isinstance(files, dict):
+        for _, file_path in files.items():
+            file_name = os.path.basename(file_path)
+            upload_file(file_path, file_name)
+
+    # Se vier como lista ["fact_sales.csv", ...]
+    elif isinstance(files, list):
+        for file_path in files:
+            file_name = os.path.basename(file_path)
+            upload_file(file_path, file_name)
+
+    else:
+        raise TypeError("upload_outputs espera dict ou list de ficheiros")
